@@ -1,12 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './assets/css/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux'
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { createStore } from 'redux';
+import rootReducer from './libs/redux/reducers/index';
+import firebase from './libs/Firebase';
+import { createFirestoreInstance } from 'redux-firestore';
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <ReactReduxFirebaseProvider
+        firebase={firebase}
+        dispatch={store.dispatch}
+        createFirestoreInstance={createFirestoreInstance}
+        config={{
+          userProfile: 'users',
+          useFirestoreForProfile: true
+        }}
+      >
+          <App />
+      </ReactReduxFirebaseProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

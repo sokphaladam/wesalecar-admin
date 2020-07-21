@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { SideMenu } from './components/SideMenu';
+import { BrowserRouter } from 'react-router-dom';
+import { RouteIndex } from './routes';
+import { connect } from 'react-redux';
+import { useFirebase } from 'react-redux-firebase';
+import { LoginScreen } from './screens/LoginScreen';
 
-function App() {
+const mapStateToProps = (state: any) => {
+  return state;
+}
+
+function App(props: any) {
+  const firebase = useFirebase().auth();
+  const [isAuth, setAuth] = useState(false);
+
+  useEffect(()=>{
+    const user = firebase.currentUser;
+
+    if(user){
+      sessionStorage.setItem('user', JSON.stringify(user));
+      setAuth(true);
+    }
+    else{
+      setAuth(false);
+    }
+  }, [firebase.currentUser]);
+
+  if(!isAuth) return <LoginScreen/>
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="page-container">
+        <SideMenu/>
+        <RouteIndex/>
+      </div>
+    </BrowserRouter>
   );
 }
 
-export default App;
+export default connect(mapStateToProps)(App);

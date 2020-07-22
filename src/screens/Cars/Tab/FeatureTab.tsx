@@ -6,6 +6,7 @@ type Props = {
   handleNext: (data: any) => void;
   handleChange: (data: any) => void;
   data?: FeatureType;
+  type: 'create' | 'edit';
 };
 
 export function FeatureTab(props: Props) {
@@ -42,40 +43,6 @@ export function FeatureTab(props: Props) {
     props.handleChange(feature);
   };
 
-  useEffect(()=>{
-    setTimeout(() => {
-      for(let i = 0; i< items.length; i++){
-        if(i === 0){
-          items[i].ref!.checked =  Boolean(props.data!.power_steering!)
-        }
-        else if(i === 1){
-          items[i].ref!.checked =  Boolean(props.data!.power_windows_front!)
-        }
-        else if(i === 2){
-          items[i].ref!.checked =  Boolean(props.data!.air_conditioner!)
-        }
-        else if(i === 3){
-          items[i].ref!.checked =  Boolean(props.data!.passenger_airbag!)
-        }
-        else if(i === 4){
-          items[i].ref!.checked =  Boolean(props.data!.foglights_front!)
-        }
-        else if(i === 5){
-          items[i].ref!.checked =  Boolean(props.data!.anti_lock_braking_system!)
-        }
-        else if(i === 6){
-          items[i].ref!.checked =  Boolean(props.data!.driver_airbag!)
-        }
-        else if(i === 7){
-          items[i].ref!.checked =  Boolean(props.data!.wheel_covers!)
-        }
-        else if(i === 8){
-          items[i].ref!.checked =  Boolean(props.data!.automatic_climate_control!)
-        }
-      }
-    }, 500)
-  })
-
   return (
     <form onSubmit={handleSubmit}>
       <table className="ui celled striped table small very collapsing">
@@ -86,11 +53,33 @@ export function FeatureTab(props: Props) {
                 <td>{x.name}</td>
                 <td className="center aligned">
                   <div className="ui small">
-                    <input
-                      type="checkbox"
-                      ref={(ref) => (items[i].ref = ref)}
-                      onChange={handleChange}
-                    />
+                    {
+                      i === 0 && <input type="checkbox" ref={(ref) => (items[i].ref = ref)} onChange={handleChange} defaultChecked={props.type === 'create'? false : props.data!.power_steering!} />
+                    }
+                    {
+                      i === 1 && <input type="checkbox" ref={(ref) => (items[i].ref = ref)} onChange={handleChange} defaultChecked={props.type === 'create'? false : props.data!.power_windows_front!} />
+                    }
+                    {
+                      i === 2 && <input type="checkbox" ref={(ref) => (items[i].ref = ref)} onChange={handleChange} defaultChecked={props.type === 'create'? false : props.data!.air_conditioner!} />
+                    }
+                    {
+                      i === 3 && <input type="checkbox" ref={(ref) => (items[i].ref = ref)} onChange={handleChange} defaultChecked={props.type === 'create'? false : props.data!.passenger_airbag!} />
+                    }
+                    {
+                      i === 4 && <input type="checkbox" ref={(ref) => (items[i].ref = ref)} onChange={handleChange} defaultChecked={props.type === 'create'? false : props.data!.foglights_front!} />
+                    }
+                    {
+                      i === 5 && <input type="checkbox" ref={(ref) => (items[i].ref = ref)} onChange={handleChange} defaultChecked={props.type === 'create'? false : props.data!.anti_lock_braking_system!} />
+                    }
+                    {
+                      i === 6 && <input type="checkbox" ref={(ref) => (items[i].ref = ref)} onChange={handleChange} defaultChecked={props.type === 'create'? false : props.data!.driver_airbag!} />
+                    }
+                    {
+                      i === 7 && <input type="checkbox" ref={(ref) => (items[i].ref = ref)} onChange={handleChange} defaultChecked={props.type === 'create'? false : props.data!.wheel_covers!} />
+                    }
+                    {
+                      i === 8 && <input type="checkbox" ref={(ref) => (items[i].ref = ref)} onChange={handleChange} defaultChecked={props.type === 'create'? false : props.data!.automatic_climate_control!} />
+                    }
                   </div>
                 </td>
               </tr>

@@ -6,9 +6,11 @@ import { useFirebase } from "react-redux-firebase";
 export function CarScreen() {
   const firebase = useFirebase();
   const [data, setData] = useState([]);
+  const [models, setModels] = useState([]);
 
   useEffect(() => {
     getCarList();
+    getModelList();
   });
 
   const getCarList = async () => {
@@ -22,6 +24,18 @@ export function CarScreen() {
     });
     setData(items);
   };
+
+  const getModelList = async () => {
+    const res = await firebase.firestore().collection('models').get();
+    const items: any = [];
+    res.forEach((x) => {
+      items.push({
+        ...x.data(),
+        id: x.id,
+      });
+    });
+    setModels(items);
+  }
 
   return (
     <Content>
@@ -39,6 +53,7 @@ export function CarScreen() {
               <th>Type</th>
               <th>Year</th>
               <th>Image</th>
+              <th className="center aligned">Model | Makes</th>
               <th className="center aligned">Action</th>
             </tr>
           </thead>
@@ -49,14 +64,14 @@ export function CarScreen() {
                 <tr key={x.id}>
                   <td className="center aligned">
                     <div className="ui fitted slider checkbox">
-                      <input 
-                        type="checkbox" 
+                      <input
+                        type="checkbox"
                         defaultChecked={x.published}
-                        ref={ref => refInput = ref} 
+                        ref={ref => refInput = ref}
                         onChange={() => {
                           firebase.firestore().collection('cars').doc(x.id).update({ published: refInput!.checked })
                         }}
-                      /> 
+                      />
                       <label></label>
                     </div>
                   </td>
@@ -88,7 +103,25 @@ export function CarScreen() {
                     </h4>
                   </td>
                   <td className="center aligned">
-                    <Link to={"/cars/edit/"+x.id}>Edit</Link>
+                    <select
+                      onChange={e => {
+                        const { model, makes } = JSON.parse(e.target.value);
+                        firebase.firestore().collection('cars').doc(x.id).update({ model, makes })
+                      }}
+                    >
+                      <option>No Model</option>
+                      {
+                        models.map((m: any) => {
+                          return <option value={JSON.stringify(m)} selected={m.model === x.model}>{m.model} | {m.makes}</option>
+                        })
+                      }
+                    </select>
+                  </td>
+                  <td className="center aligned">
+                    <Link to={"/cars/edit/" + x.id}>Edit</Link>
+                    <br />
+                    <br />
+                    <Link to="#" className="text-danger" onClick={() => firebase.firestore().collection('cars').doc(x.id).delete()}>Delete</Link>
                   </td>
                 </tr>
               );
@@ -97,10 +130,10 @@ export function CarScreen() {
           <tfoot>
             <tr>
               <th className="center aligned">
-                Publish {data.filter((x:any) => x.published === true).length}
+                Publish {data.filter((x: any) => x.published === true).length}
               </th>
-              <th colSpan={6}>
-                Unpublish {data.filter((x:any) => x.published === false).length}
+              <th colSpan={7}>
+                Unpublish {data.filter((x: any) => x.published === false).length}
               </th>
             </tr>
           </tfoot>

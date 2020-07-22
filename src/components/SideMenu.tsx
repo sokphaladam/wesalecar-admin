@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useState, useEffect } from 'react';
 import { MenuItem } from '../libs/MenuItem';
 import { Logo } from './Logo';

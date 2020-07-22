@@ -8,7 +8,7 @@ import { OverviewTab } from './Tab/OverviewTab';
 import { FeatureTab } from './Tab/FeatureTab';
 import { VechicleTab } from './Tab/VechicleTab';
 
-export function CarEditScreen(){
+export function CarEditScreen() {
   const firebase = useFirebase();
   const history = useHistory();
   const match: any = useRouteMatch();
@@ -18,51 +18,49 @@ export function CarEditScreen(){
   const [feature, setFeature] = useState<FeatureType>({});
   const [vechicle, setVechicle] = useState<VechicleType>({});
   const [load, setLoad] = useState(true);
-  
+
   const handleNext = async (data: any, type: 'information' | 'overview' | 'feature' | 'vechicle') => {
-    if(type === 'information'){
+    if (type === 'information') {
       setInformation(data);
       setIndex(1);
     }
-    else if(type === 'overview'){
+    else if (type === 'overview') {
       setOverview(data);
       setIndex(2);
     }
-    else if(type === 'feature'){
+    else if (type === 'feature') {
       setFeature(data);
       setIndex(3);
     }
-    else{
+    else {
       const data = {
         ...information,
         overview,
         feature,
         vechicle,
-        published: true,
-        created: Date.now()
       }
-      await firebase.firestore().collection('cars').doc().set(data);
-      history.push('/cars')
+      await firebase.firestore().collection('cars').doc(match.params.id).update(data);
+      history.push('/cars');
     }
   }
 
   const handleChange = (data: any, type: 'information' | 'overview' | 'feature' | 'vechicle') => {
-    if(type === 'information'){
+    if (type === 'information') {
       setInformation(data);
     }
-    else if(type === 'overview'){
+    else if (type === 'overview') {
       setOverview(data);
     }
-    else if(type === 'feature'){
+    else if (type === 'feature') {
       setFeature(data);
     }
-    else{
+    else {
       setVechicle(data);
     }
   }
 
-  useEffect(()=>{
-    if(load){
+  useEffect(() => {
+    if (load) {
       getCar();
     }
   })
@@ -76,13 +74,13 @@ export function CarEditScreen(){
       type: snap.data()!.type,
       year: snap.data()!.year
     });
-    await setOverview({...snap.data()!.overview});
-    await setFeature({...snap.data()!.feature});
-    await setVechicle({...snap.data()!.vechicle});
+    await setOverview({ ...snap.data()!.overview });
+    await setFeature({ ...snap.data()!.feature });
+    await setVechicle({ ...snap.data()!.vechicle });
     await setLoad(false);
   }
 
-  return(
+  return (
     <Content>
       <div className="row">
         <div className="col-md-6">
@@ -105,31 +103,35 @@ export function CarEditScreen(){
                 </ul>
                 <div className="tab-content">
                   <div className={`tab-pane fade ${index === 0 ? 'active in' : ''}`} id="tab1">
-                    <InformationTab 
+                    <InformationTab
                       handleNext={e => handleNext(e, 'information')}
                       handleChange={e => handleChange(e, 'information')}
                       data={information}
+                      type="edit"
                     />
                   </div>
                   <div className={`tab-pane fade ${index === 1 ? 'active in' : ''}`} id="tab2">
-                    <OverviewTab 
+                    <OverviewTab
                       handleNext={e => handleNext(e, 'overview')}
                       handleChange={e => handleChange(e, 'overview')}
                       data={overview}
-                   />
+                      type="edit"
+                    />
                   </div>
                   <div className={`tab-pane fade ${index === 2 ? 'active in' : ''}`} id="tab3">
-                    <FeatureTab 
+                    <FeatureTab
                       handleNext={e => handleNext(e, 'feature')}
                       handleChange={e => handleChange(e, 'feature')}
                       data={feature}
+                      type="edit"
                     />
                   </div>
                   <div className={`tab-pane fade ${index === 3 ? 'active in' : ''}`} id="tab4">
-                    <VechicleTab 
+                    <VechicleTab
                       handleNext={e => handleNext(e, 'vechicle')}
                       handleChange={e => handleChange(e, 'vechicle')}
                       data={vechicle}
+                      type="edit"
                     />
                   </div>
                 </div>

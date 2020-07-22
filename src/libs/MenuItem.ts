@@ -9,5 +9,15 @@ export const MenuItem = [
     //     to: '/cars'
     //   }
     // ]
+  },
+  {
+    icon: 'menu-icon mdi mdi-domain',
+    name: 'Makes',
+    to: '/makes',
+  },
+  {
+    icon: 'menu-icon mdi mdi-cube',
+    name: 'Models',
+    to: '/models',
   }
 ]

@@ -5,6 +5,7 @@ type Props = {
   handleNext: (data: any) => void;
   handleChange: (data: any) => void;
   data?: OverviewType;
+  type: 'create' | 'edit';
 }
 
 export function OverviewTab(props: Props) {
@@ -51,40 +52,40 @@ export function OverviewTab(props: Props) {
     <form className="ui form large" onSubmit={handleNext}>
       <div className="field">
         <label>Overview</label>
-        <textarea placeholder="Text something..." required ref={ref => overviews = ref} onChange={handleChange} defaultValue={props.data!.overviews!}></textarea>
+        <textarea placeholder="Text something..." required ref={ref => overviews = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' : props.data!.overviews!}></textarea>
       </div>
       <div className="field">
         <label>Fuel Type</label>
-        <input type="text" placeholder="Enter fuel type..." required ref={ref => fuel = ref} onChange={handleChange} defaultValue={props.data!.fuel!}/>
+        <input type="text" placeholder="Enter fuel type..." required ref={ref => fuel = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' :props.data!.fuel!}/>
       </div>
       <div className="field">
         <label>Seating</label>
-        <input type="number" placeholder="Enter seating..." required ref={ref => seat = ref} onChange={handleChange} defaultValue={props.data!.seat!}/>
+        <input type="number" placeholder="Enter seating..." required ref={ref => seat = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' :props.data!.seat!}/>
       </div>
       <div className="field">
         <label>Air Bags</label>
         <select ref={ref => air = ref} onChange={handleChange}>
-          <option value={1} selected={Number(props.data!.air) === 1}>Available</option>
-          <option value={0} selected={Number(props.data!.air) === 0}>Unavailable</option>
+          <option value={1} selected={props.type === 'create'? false : Number(props.data!.air) === 1}>Available</option>
+          <option value={0} selected={props.type === 'create'? false : Number(props.data!.air) === 0}>Unavailable</option>
         </select>
       </div>
       <div className="field">
         <label>Engine</label>
-        <input type="text" placeholder="Enter engine..." required ref={ref => engine = ref} onChange={handleChange} defaultValue={props.data!.engine!}/>
+        <input type="text" placeholder="Enter engine..." required ref={ref => engine = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' :props.data!.engine!}/>
       </div>
       <div className="field">
         <label>Breaks</label>
-        <input type="text" placeholder="Enter engine..." required ref={ref => breaks = ref} onChange={handleChange} defaultValue={props.data!.breaks!}/>
+        <input type="text" placeholder="Enter engine..." required ref={ref => breaks = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' :props.data!.breaks!}/>
       </div>
       <div className="field">
         <label>Colors</label>
-        <input type="text" placeholder="Enter engine..." required ref={ref => colors = ref} onChange={handleChange} defaultValue={props.data!.colors!}/>
+        <input type="text" placeholder="Enter engine..." required ref={ref => colors = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' : props.data!.colors!}/>
       </div>
       <div className="field">
         <label>Power Windows</label>
         <select ref={ref => power = ref} onChange={handleChange}>
-          <option value={1} selected={Number(props.data!.power) === 1}>Available</option>
-          <option value={0} selected={Number(props.data!.power) === 0}>Unavailable</option>
+          <option value={1} selected={props.type === 'create'? false : Number(props.data!.power) === 1}>Available</option>
+          <option value={0} selected={props.type === 'create'? false : Number(props.data!.power) === 0}>Unavailable</option>
         </select>
       </div>
       <button className="ui button large blue">Next</button>

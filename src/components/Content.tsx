@@ -1,9 +1,10 @@
 import React from 'react';
+import { HeaderComponent } from './HeaderComponent';
 
 export function Content(props: any){
   return(
     <div className="page-content">
-      <div className="page-header"></div>
+      <HeaderComponent/>
       <div className="page-inner">
         {
           props.children

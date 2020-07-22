@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useFirebase } from 'react-redux-firebase';
+import { BasicInformationType } from '../../../libs/DataType';
 
 type Props = {
   handleNext: (data: any) => void;
+  handleChange: (data: any) => void;
+  data?: BasicInformationType;
 }
 
 export function InformationTab(props: Props) {
@@ -21,11 +24,11 @@ export function InformationTab(props: Props) {
 
     if(url.length === 0) return alert('please wait for image upload done!');
 
-    const data = {
+    const data: BasicInformationType = {
       title: title!.value,
-      price: price!.value,
+      price: Number(price!.value),
       type: type!.value,
-      year: year!.value,
+      year: Number(year!.value),
       image: url
     }
 
@@ -41,9 +44,20 @@ export function InformationTab(props: Props) {
         const x = await uploadFile(img);
         items.push(x);
       }
-      setUrl(items)
-      setLoad(false);
+      await setUrl(items)
+      await setLoad(false);
     }
+  }
+
+  const handleChange = () => {
+    const data: BasicInformationType = {
+      title: title!.value,
+      price: Number(price!.value),
+      type: type!.value,
+      year: Number(year!.value),
+      image: url
+    }
+    props.handleChange(data);
   }
 
   const uploadFile = async (file: File) => {
@@ -59,29 +73,44 @@ export function InformationTab(props: Props) {
     <form className="ui form large" onSubmit={handleNext}>
       <div className="field">
         <label>Property Title</label>
-        <input type="text" placeholder="Enter car name..." required ref={ref => title = ref}/>
+        <input type="text" placeholder="Enter car name..." required ref={ref => title = ref} onChange={handleChange} defaultValue={props.data!.title!}/>
       </div>
       <div className="two fields">
         <div className="field">
           <label>Price</label>
-          <input type="number" placeholder="Enter price..." step={0.1} required ref={ref => price = ref}/>
+          <input type="number" placeholder="Enter price..." step={0.1} required ref={ref => price = ref} onChange={handleChange} defaultValue={props.data!.price!}/>
         </div>
         <div className="field">
           <label>Type</label>
-          <input type="text" placeholder="Type car is new or popular?" required ref={ref => type = ref}/>
+          <input type="text" placeholder="Type car is new or popular?" required ref={ref => type = ref} onChange={handleChange} defaultValue={props.data!.type!}/>
         </div>
       </div>
       <div className="field">
         <label>Year</label>
-        <input type="text" placeholder="Year are make" required ref={ref => year = ref}/>
+        <input type="number" placeholder="Year are make" required ref={ref => year = ref} onChange={handleChange} defaultValue={props.data!.year!}/>
       </div>
       <div className="field">
         <label>Image</label>
-        <input type="file" placeholder="Enter car name..." onChange={handleImage} multiple={true} ref={ref => image = ref}/>
+        <input 
+          type="file" 
+          placeholder="Enter car name..." 
+          onChange={e => {
+            handleImage(e);
+            if(!loaded) handleChange();
+          }}
+          multiple={true} 
+          ref={ref => image = ref}
+        />
       </div>
       <div>
         {
-          loaded ?
+          props.data!.image! !== undefined &&
+          (props.data!.image! as any).map((x: any, i: number) => {
+            return <img src={x} alt="" key={i} style={{ width: 100, height: 60 }}/>
+          })
+        }
+        {
+          loaded || url === undefined ?
           <div>Load Data...</div>:
           url.map((x: any, i: number) => {
             return <img src={x} alt="" key={i} style={{ width: 100, height: 60 }}/>

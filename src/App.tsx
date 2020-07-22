@@ -5,6 +5,7 @@ import { RouteIndex } from './routes';
 import { connect } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
 import { LoginScreen } from './screens/LoginScreen';
+import { LoadScreen } from './screens/LoadScreen';
 
 const mapStateToProps = (state: any) => {
   return state;
@@ -13,6 +14,7 @@ const mapStateToProps = (state: any) => {
 function App(props: any) {
   const firebase = useFirebase().auth();
   const [isAuth, setAuth] = useState(false);
+  const [load, setLoad] = useState(true);
 
   useEffect(()=>{
     const user = firebase.currentUser;
@@ -24,7 +26,13 @@ function App(props: any) {
     else{
       setAuth(false);
     }
+
+    setTimeout(()=>{
+      setLoad(false);
+    }, 3000);
   }, [firebase.currentUser]);
+
+  if(load) return <LoadScreen/>
 
   if(!isAuth) return <LoginScreen/>
 

@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Content } from '../../components/Content';
-import { Link, useHistory } from 'react-router-dom';
+import { useFirebase, isEmpty } from 'react-redux-firebase';
+import { useHistory, Link, useRouteMatch } from 'react-router-dom';
+import { BasicInformationType, OverviewType, FeatureType, VechicleType } from '../../libs/DataType';
 import { InformationTab } from './Tab/InformationTab';
 import { OverviewTab } from './Tab/OverviewTab';
 import { FeatureTab } from './Tab/FeatureTab';
 import { VechicleTab } from './Tab/VechicleTab';
-import { BasicInformationType, OverviewType, FeatureType, VechicleType } from '../../libs/DataType';
-import { isEmpty, useFirebase } from 'react-redux-firebase';
 
-export function CarCreateScreen() {
+export function CarEditScreen(){
   const firebase = useFirebase();
   const history = useHistory();
+  const match: any = useRouteMatch();
   const [index, setIndex] = useState(0);
   const [information, setInformation] = useState<BasicInformationType>({});
   const [overview, setOverview] = useState<OverviewType>({});
   const [feature, setFeature] = useState<FeatureType>({});
   const [vechicle, setVechicle] = useState<VechicleType>({});
-
+  const [load, setLoad] = useState(true);
+  
   const handleNext = async (data: any, type: 'information' | 'overview' | 'feature' | 'vechicle') => {
     if(type === 'information'){
       setInformation(data);
@@ -59,7 +61,28 @@ export function CarCreateScreen() {
     }
   }
 
-  return (
+  useEffect(()=>{
+    if(load){
+      getCar();
+    }
+  })
+
+  const getCar = async () => {
+    const snap = await firebase.firestore().collection('cars').doc(match.params.id).get();
+    await setInformation({
+      image: snap.data()!.image,
+      price: snap.data()!.price,
+      title: snap.data()!.title,
+      type: snap.data()!.type,
+      year: snap.data()!.year
+    });
+    await setOverview({...snap.data()!.overview});
+    await setFeature({...snap.data()!.feature});
+    await setVechicle({...snap.data()!.vechicle});
+    await setLoad(false);
+  }
+
+  return(
     <Content>
       <div className="row">
         <div className="col-md-6">
@@ -85,24 +108,28 @@ export function CarCreateScreen() {
                     <InformationTab 
                       handleNext={e => handleNext(e, 'information')}
                       handleChange={e => handleChange(e, 'information')}
+                      data={information}
                     />
                   </div>
                   <div className={`tab-pane fade ${index === 1 ? 'active in' : ''}`} id="tab2">
                     <OverviewTab 
                       handleNext={e => handleNext(e, 'overview')}
                       handleChange={e => handleChange(e, 'overview')}
+                      data={overview}
                    />
                   </div>
                   <div className={`tab-pane fade ${index === 2 ? 'active in' : ''}`} id="tab3">
                     <FeatureTab 
                       handleNext={e => handleNext(e, 'feature')}
                       handleChange={e => handleChange(e, 'feature')}
+                      data={feature}
                     />
                   </div>
                   <div className={`tab-pane fade ${index === 3 ? 'active in' : ''}`} id="tab4">
                     <VechicleTab 
                       handleNext={e => handleNext(e, 'vechicle')}
                       handleChange={e => handleChange(e, 'vechicle')}
+                      data={vechicle}
                     />
                   </div>
                 </div>

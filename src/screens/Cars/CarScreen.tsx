@@ -7,10 +7,14 @@ export function CarScreen() {
   const firebase = useFirebase();
   const [data, setData] = useState([]);
   const [models, setModels] = useState([]);
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
     getCarList();
-    getModelList();
+    if(load){
+      getModelList();
+      setLoad(false);
+    }
   });
 
   const getCarList = async () => {

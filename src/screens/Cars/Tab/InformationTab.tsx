@@ -72,8 +72,10 @@ export function InformationTab(props: Props) {
   }
 
   useEffect(() => {
-    setUrl(props.data!.image!);
-  }, [props.data])
+    if(props.type === 'edit') {
+      setUrl(props.data!.image!);
+    }
+  }, [props.data, props.type])
 
   return (
     <form className="ui form large" onSubmit={handleNext}>

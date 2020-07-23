@@ -1,5 +1,4 @@
 /* eslint-disable no-script-url */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link } from "react-router-dom";
 import { useFirebase } from "react-redux-firebase";
@@ -48,12 +47,12 @@ export function HeaderComponent() {
         <div className="container-fluid">
           <div className="navbar-header">
             <div className="logo-sm">
-              <a href="javascript:void(0)" id="sidebar-toggle-button">
+              <Link to="#" id="sidebar-toggle-button">
                 <i className="fa fa-bars"></i>
-              </a>
-              <a className="logo-box" href="index.html">
+              </Link>
+              <Link className="logo-box" to="#">
                 <span>Fadmin</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div
@@ -71,13 +70,13 @@ export function HeaderComponent() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="javascript:void(0)"
+                <Link
+                  to="#"
                   id="toggle-fullscreen"
                   onClick={handleFullscreen}
                 >
                   <i className="mdi mdi-fullscreen"></i>
-                </a>
+                </Link>
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">

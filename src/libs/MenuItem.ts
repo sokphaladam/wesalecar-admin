@@ -19,5 +19,10 @@ export const MenuItem = [
     icon: 'menu-icon mdi mdi-cube',
     name: 'Models',
     to: '/models',
+  },
+  {
+    icon: 'menu-icon mdi mdi-account-key',
+    name: 'Users',
+    to: '#',
   }
 ]

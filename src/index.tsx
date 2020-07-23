@@ -10,8 +10,15 @@ import rootReducer from './libs/redux/reducers/index';
 import firebase from './libs/Firebase';
 import { createFirestoreInstance } from 'redux-firestore';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import $ from 'jquery';
+
+(window as any).$ = (window as any).jQuery =$;
 
 const store = createStore(rootReducer, composeWithDevTools());
+const script_tag = document.createElement('script');
+
+script_tag.src = 'https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js';
+document.body.appendChild(script_tag);
 
 ReactDOM.render(
   <React.StrictMode>

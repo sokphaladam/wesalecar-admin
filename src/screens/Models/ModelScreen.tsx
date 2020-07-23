@@ -40,7 +40,7 @@ export function ModelScreen() {
                   <th>Model</th>
                   <th>Makes</th>
                   <th>Create Date</th>
-                  <th>Action</th>
+                  <th className="right aligned">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,11 +51,9 @@ export function ModelScreen() {
                         <td>{x.model}</td>
                         <td>{x.makes}</td>
                         <td>{moment(new Date(x.created)).format('MMM DD,YYYY')}</td>
-                        <td>
-                          <Link to={'/models/edit/'+x.id}>Edit</Link>
-                          <br/>
-                          <br/>
-                          <Link to="#" className="text-danger" onClick={()=>firebase.firestore().collection('models').doc(x.id).delete()}>Delete</Link>
+                        <td className="right aligned">
+                          <Link to={'/models/edit/'+x.id} className="ui button blue">Edit</Link>
+                          <Link to="#" className="ui button red" onClick={()=>firebase.firestore().collection('models').doc(x.id).delete()}>Delete</Link>
                         </td>
                       </tr>
                     )

@@ -26,7 +26,7 @@ export function CarScreen() {
   };
 
   const getModelList = async () => {
-    const res = await firebase.firestore().collection('models').get();
+    const res = await firebase.firestore().collection("models").get();
     const items: any = [];
     res.forEach((x) => {
       items.push({
@@ -35,7 +35,7 @@ export function CarScreen() {
       });
     });
     setModels(items);
-  }
+  };
 
   return (
     <Content>
@@ -67,9 +67,13 @@ export function CarScreen() {
                       <input
                         type="checkbox"
                         defaultChecked={x.published}
-                        ref={ref => refInput = ref}
+                        ref={(ref) => (refInput = ref)}
                         onChange={() => {
-                          firebase.firestore().collection('cars').doc(x.id).update({ published: refInput!.checked })
+                          firebase
+                            .firestore()
+                            .collection("cars")
+                            .doc(x.id)
+                            .update({ published: refInput!.checked });
                         }}
                       />
                       <label></label>
@@ -82,11 +86,8 @@ export function CarScreen() {
                   <td>{x.type}</td>
                   <td>{x.year}</td>
                   <td>
-                    <h4
-                      className="ui image header"
-                      style={{ display: "flex" }}
-                    >
-                      {x.image.map((y: any) => {
+                    <h4 className="ui image header" style={{ display: "flex" }}>
+                      {x.image.map((y: any, j: number) => {
                         return (
                           <img
                             src={y}
@@ -95,33 +96,57 @@ export function CarScreen() {
                             style={{
                               marginRight: 3,
                               height: 30,
-                              width: 30
+                              width: 30,
                             }}
+                            key={j}
                           />
                         );
                       })}
                     </h4>
                   </td>
                   <td className="center aligned">
-                    <select
-                      onChange={e => {
-                        const { model, makes } = JSON.parse(e.target.value);
-                        firebase.firestore().collection('cars').doc(x.id).update({ model, makes })
-                      }}
-                    >
-                      <option>No Model</option>
-                      {
-                        models.map((m: any) => {
-                          return <option value={JSON.stringify(m)} selected={m.model === x.model}>{m.model} | {m.makes}</option>
-                        })
-                      }
-                    </select>
+                    <form className="ui form small">
+                      <select
+                        className="field"
+                        onChange={(e) => {
+                          const { model, makes } = JSON.parse(e.target.value);
+                          firebase
+                            .firestore()
+                            .collection("cars")
+                            .doc(x.id)
+                            .update({ model, makes });
+                        }}
+                      >
+                        <option>No Model</option>
+                        {models.map((m: any) => {
+                          return (
+                            <option
+                              value={JSON.stringify(m)}
+                              selected={m.model === x.model}
+                              key={m.model}
+                            >
+                              {m.model} | {m.makes}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </form>
                   </td>
                   <td className="center aligned">
-                    <Link to={"/cars/edit/" + x.id}>Edit</Link>
-                    <br />
-                    <br />
-                    <Link to="#" className="text-danger" onClick={() => firebase.firestore().collection('cars').doc(x.id).delete()}>Delete</Link>
+                    <Link to={"/cars/edit/" + x.id} className="ui button blue">Edit</Link>
+                    <Link
+                      to="#"
+                      className="ui button red"
+                      onClick={() =>
+                        firebase
+                          .firestore()
+                          .collection("cars")
+                          .doc(x.id)
+                          .delete()
+                      }
+                    >
+                      Delete
+                    </Link>
                   </td>
                 </tr>
               );
@@ -133,7 +158,8 @@ export function CarScreen() {
                 Publish {data.filter((x: any) => x.published === true).length}
               </th>
               <th colSpan={7}>
-                Unpublish {data.filter((x: any) => x.published === false).length}
+                Unpublish{" "}
+                {data.filter((x: any) => x.published === false).length}
               </th>
             </tr>
           </tfoot>

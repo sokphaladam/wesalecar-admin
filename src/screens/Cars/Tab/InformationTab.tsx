@@ -13,7 +13,7 @@ type Props = {
 export function InformationTab(props: Props) {
   let title: HTMLInputElement | null = null;
   let price: HTMLInputElement | null = null;
-  let type: HTMLInputElement | null = null;
+  let type: HTMLSelectElement | null = null;
   let year: HTMLInputElement | null = null;
   let image: HTMLInputElement | null = null;
 
@@ -90,7 +90,11 @@ export function InformationTab(props: Props) {
         </div>
         <div className="field">
           <label>Type</label>
-          <input type="text" placeholder="Type car is new or popular?" required ref={ref => type = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' : props.data!.type!}/>
+          <select className="ui small" required ref={ref => type = ref} onChange={handleChange}>
+            <option value="NEW" selected={props.type === 'create' ? false : props.data!.type === 'NEW'}>New</option>
+            <option value="USED" selected={props.type === 'create' ? false : props.data!.type === 'USED'}>Used</option>
+            <option value="PRE-OWNED" selected={props.type === 'create' ? false : props.data!.type === 'PRE-OWNED'}>Certified Pre-Owned</option>
+          </select>
         </div>
       </div>
       <div className="field">

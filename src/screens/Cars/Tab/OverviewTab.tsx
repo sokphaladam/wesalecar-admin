@@ -10,7 +10,7 @@ type Props = {
 
 export function OverviewTab(props: Props) {
   let overviews: HTMLTextAreaElement | null = null;
-  let fuel: HTMLInputElement | null = null;
+  let fuel: HTMLSelectElement | null = null;
   let seat: HTMLInputElement | null = null;
   let air: HTMLSelectElement | null = null;
   let engine: HTMLInputElement | null = null;
@@ -56,7 +56,15 @@ export function OverviewTab(props: Props) {
       </div>
       <div className="field">
         <label>Fuel Type</label>
-        <input type="text" placeholder="Enter fuel type..." required ref={ref => fuel = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' :props.data!.fuel!}/>
+        <select ref={ref => fuel = ref} onChange={handleChange} className="ui small">
+          <option value="ELECTRIC" selected={props.type === 'create'? false : props.data!.fuel === 'ELECTRIC'}>Electric</option>
+          <option value="DIESEL" selected={props.type === 'create'? false : props.data!.fuel === 'DIESEL'}>Diesel</option>
+          <option value="PETROL" selected={props.type === 'create'? false : props.data!.fuel === 'PETROL'}>Petrol</option>
+          <option value="HYBRID" selected={props.type === 'create'? false : props.data!.fuel === 'HYBRID'}>Hybrid</option>
+          <option value="PETROL+CNG" selected={props.type === 'create'? false : props.data!.fuel === 'PETROL+CNG'}>Petrol+CNG</option>
+          <option value="PETROL+LPG" selected={props.type === 'create'? false : props.data!.fuel === 'PETROL+LPG'}>Petrol+LPG</option>
+        </select>
+        {/* <input type="text" placeholder="Enter fuel type..." required ref={ref => fuel = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' :props.data!.fuel!}/> */}
       </div>
       <div className="field">
         <label>Seating</label>

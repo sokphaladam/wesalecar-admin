@@ -33,12 +33,22 @@ export function CarCreateScreen() {
     else{
       const data = {
         ...information,
-        overview,
-        feature,
-        vechicle,
+        ...overview,
+        ...feature,
+        ...vechicle,
         published: true,
         created: Date.now()
       }
+      
+      const year = await firebase.firestore().collection('years').where('year', '==', information.year).get();
+
+      if(year.empty){
+        await firebase.firestore().collection('years').doc().set({
+          year: information.year,
+          created: Date.now()
+        })
+      }
+
       await firebase.firestore().collection('cars').doc().set(data);
       history.push('/cars')
     }

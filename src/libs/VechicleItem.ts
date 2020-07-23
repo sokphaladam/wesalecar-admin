@@ -1,6 +1,6 @@
 type FieldType = {
   name: string;
-  ref: HTMLInputElement | null;
+  ref: HTMLInputElement | HTMLSelectElement | null;
 };
 
 export const VechicleItem: FieldType[] = [

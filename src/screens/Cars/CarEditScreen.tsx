@@ -35,10 +35,20 @@ export function CarEditScreen() {
     else {
       const data = {
         ...information,
-        overview,
-        feature,
-        vechicle,
+        ...overview,
+        ...feature,
+        ...vechicle,
       }
+
+      const year = await firebase.firestore().collection('years').where('year', '==', information.year).get();
+
+      if(year.empty){
+        await firebase.firestore().collection('years').doc().set({
+          year: information.year,
+          created: Date.now()
+        })
+      }
+
       await firebase.firestore().collection('cars').doc(match.params.id).update(data);
       history.push('/cars');
     }
@@ -67,6 +77,7 @@ export function CarEditScreen() {
 
   const getCar = async () => {
     const snap = await firebase.firestore().collection('cars').doc(match.params.id).get();
+    const val = snap.data()!;
     await setInformation({
       image: snap.data()!.image,
       price: snap.data()!.price,
@@ -74,9 +85,39 @@ export function CarEditScreen() {
       type: snap.data()!.type,
       year: snap.data()!.year
     });
-    await setOverview({ ...snap.data()!.overview });
-    await setFeature({ ...snap.data()!.feature });
-    await setVechicle({ ...snap.data()!.vechicle });
+    await setOverview({
+      air: val.air,
+      breaks: val.breaks,
+      colors: val.colors,
+      engine: val.engine,
+      fuel: val.fuel,
+      overviews: val.overviews,
+      power: val.power,
+      seat: val.seat
+    });
+    await setFeature({
+      air_conditioner: val.air_conditioner,
+      anti_lock_braking_system: val.anti_lock_braking_system,
+      automatic_climate_control: val.automatic_climate_control,
+      driver_airbag: val.driver_airbag,
+      foglights_front: val.foglights_front,
+      passenger_airbag: val.passenger_airbag,
+      power_steering: val.power_steering,
+      power_windows_front: val.power_windows_front,
+      wheel_covers: val.wheel_covers
+    });
+    await setVechicle({
+      arai_mileage: val.arai_mileage,
+      body_type: val.body_type,
+      boot_space: val.boot_space,
+      engine_displacement: val.engine_displacement,
+      fuel_tank_capacity: val.fuel_tank_capacity,
+      fuel_type: val.fuel_type,
+      max_power: val.max_power,
+      max_torque: val.max_torque,
+      seating_capacity: val.seating_capacity,
+      transmission_type: val.transmission_type
+    });
     await setLoad(false);
   }
 

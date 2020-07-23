@@ -60,7 +60,7 @@ export function VechicleTab(props: Props) {
                       <tr key={i}>
                         <td>{x.name}</td>
                         <td className='center aligned'>
-                          <div className="ui small field">
+                          <div className="ui large field">
                             {
                               i === 0 && <input type="text" ref={ref => items[i].ref = ref} defaultValue={props.type === 'create'? '' : props.data!.arai_mileage!} onChange={handleChange} required/>
                             }
@@ -96,7 +96,7 @@ export function VechicleTab(props: Props) {
                       <tr key={i}>
                         <td>{x.name}</td>
                         <td className='center aligned'>
-                          <div className="ui small field">
+                          <div className="ui large field">
                             {
                               i === 5 && <input type="text" ref={ref => items[i].ref = ref} defaultValue={props.type === 'create'? '' : props.data!.fuel_type!} onChange={handleChange} required/>
                             }
@@ -104,7 +104,13 @@ export function VechicleTab(props: Props) {
                               i === 6 && <input type="text" ref={ref => items[i].ref = ref} defaultValue={props.type === 'create'? '' : props.data!.max_power!} onChange={handleChange} required/>
                             }
                             {
-                              i === 7 && <input type="text" ref={ref => items[i].ref = ref} defaultValue={props.type === 'create'? '' : props.data!.transmission_type!} onChange={handleChange} required/>
+                              i === 7 && (
+                                <select className="ui small" ref={ref => items[i].ref = ref} onChange={handleChange}>
+                                  <option value="AMT" selected={props.type === 'create'? false : props.data!.transmission_type! === 'AMT'}>AMT</option>
+                                  <option value="AUTO" selected={props.type === 'create'? false : props.data!.transmission_type! === 'AUTO'}>Automatic</option>
+                                  <option value="MANUAL" selected={props.type === 'create'? false : props.data!.transmission_type! === 'MANUAL'}>Manual</option>
+                                </select>
+                              )
                             }
                             {
                               i === 8 && <input type="text" ref={ref => items[i].ref = ref} defaultValue={props.type === 'create'? '' : props.data!.fuel_tank_capacity!} onChange={handleChange} required/>

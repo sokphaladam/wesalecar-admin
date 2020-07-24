@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/wesalecar-admin/static/css/main.811c717d.chunk.css",
-    "main.js": "/wesalecar-admin/static/js/main.d5428598.chunk.js",
-    "main.js.map": "/wesalecar-admin/static/js/main.d5428598.chunk.js.map",
+    "main.js": "/wesalecar-admin/static/js/main.b72ed278.chunk.js",
+    "main.js.map": "/wesalecar-admin/static/js/main.b72ed278.chunk.js.map",
     "runtime-main.js": "/wesalecar-admin/static/js/runtime-main.5f4892de.js",
     "runtime-main.js.map": "/wesalecar-admin/static/js/runtime-main.5f4892de.js.map",
-    "static/js/2.07223a0d.chunk.js": "/wesalecar-admin/static/js/2.07223a0d.chunk.js",
-    "static/js/2.07223a0d.chunk.js.map": "/wesalecar-admin/static/js/2.07223a0d.chunk.js.map",
+    "static/js/2.dbd70c8e.chunk.js": "/wesalecar-admin/static/js/2.dbd70c8e.chunk.js",
+    "static/js/2.dbd70c8e.chunk.js.map": "/wesalecar-admin/static/js/2.dbd70c8e.chunk.js.map",
     "index.html": "/wesalecar-admin/index.html",
-    "precache-manifest.43135467e56090e31970ecca4ce49fee.js": "/wesalecar-admin/precache-manifest.43135467e56090e31970ecca4ce49fee.js",
+    "precache-manifest.f625f926b9d794120a8e74a52a880a51.js": "/wesalecar-admin/precache-manifest.f625f926b9d794120a8e74a52a880a51.js",
     "service-worker.js": "/wesalecar-admin/service-worker.js",
     "static/css/main.811c717d.chunk.css.map": "/wesalecar-admin/static/css/main.811c717d.chunk.css.map",
-    "static/js/2.07223a0d.chunk.js.LICENSE.txt": "/wesalecar-admin/static/js/2.07223a0d.chunk.js.LICENSE.txt",
+    "static/js/2.dbd70c8e.chunk.js.LICENSE.txt": "/wesalecar-admin/static/js/2.dbd70c8e.chunk.js.LICENSE.txt",
     "static/media/208.gif": "/wesalecar-admin/static/media/208.04115a6c.gif",
     "static/media/index.css": "/wesalecar-admin/static/media/typiconsd41dd41d.a509074c.eot"
   },
   "entrypoints": [
     "static/js/runtime-main.5f4892de.js",
-    "static/js/2.07223a0d.chunk.js",
+    "static/js/2.dbd70c8e.chunk.js",
     "static/css/main.811c717d.chunk.css",
-    "static/js/main.d5428598.chunk.js"
+    "static/js/main.b72ed278.chunk.js"
   ]
 }

@@ -4,8 +4,6 @@ import { MenuItem } from '../libs/MenuItem';
 import { Logo } from './Logo';
 import { Link, useHistory } from 'react-router-dom';
 
-const path = window.location.pathname.split('/')[1];
-
 export function SideMenu() {
   const history = useHistory();
   const [index, setIndex] = useState(-1);

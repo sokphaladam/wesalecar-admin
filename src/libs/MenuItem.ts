@@ -1,10 +1,8 @@
-const path = window.location.pathname.split('/')[1];
-
 export const MenuItem = [
   {
     icon: 'menu-icon mdi mdi-car',
     name: 'Cars',
-    to: path === 'wesalecar-admin' ? '/wesalecar-admin/cars':'/cars',
+    to: '/cars',
     // items: [
     //   {
     //     name: 'Products',
@@ -15,16 +13,16 @@ export const MenuItem = [
   {
     icon: 'menu-icon mdi mdi-domain',
     name: 'Makes',
-    to: path === 'wesalecar-admin' ? '/wesalecar-admin/makes':'/makes',
+    to: '/makes',
   },
   {
     icon: 'menu-icon mdi mdi-cube',
     name: 'Models',
-    to: path === 'wesalecar-admin' ? '/wesalecar-admin/models':'/models',
+    to: '/models',
   },
   {
     icon: 'menu-icon mdi mdi-account-key',
     name: 'Users',
-    to: path === 'wesalecar-admin' ? '/wesalecar-admin/users':'/users',
+    to: '/users',
   }
 ]

@@ -65,7 +65,7 @@ function App(props: any) {
   if(!isAuth) return <LoginScreen/>
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="wesalecar-admin">
       <div className="page-container">
         <SideMenu/>
         <RouteIndex/>

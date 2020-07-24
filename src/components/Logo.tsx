@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export function Logo() {
   return (
-    <a className="logo-box" href="index.html">
+    <Link className="logo-box" to="#">
       <span>
         <i 
           className="mdi mdi-chemical-weapon"
@@ -14,6 +15,6 @@ export function Logo() {
         className="mdi mdi-close"
         id="sidebar-toggle-button-close"
       ></i>
-    </a>
+    </Link>
   )
 }

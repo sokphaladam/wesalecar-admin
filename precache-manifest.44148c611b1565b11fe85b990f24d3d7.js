@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0b15dfe7587e0d5be394d67c5e9d3034",
+    "revision": "0c59aeb48b83feb2858753a9a4d5ccc2",
     "url": "/wesalecar-admin/index.html"
   },
   {
-    "revision": "04d9961d401adfb7a8ef",
+    "revision": "bf2371f2b33443895946",
     "url": "/wesalecar-admin/static/css/main.811c717d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wesalecar-admin/static/js/2.dbd70c8e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "04d9961d401adfb7a8ef",
-    "url": "/wesalecar-admin/static/js/main.efba7e6e.chunk.js"
+    "revision": "bf2371f2b33443895946",
+    "url": "/wesalecar-admin/static/js/main.3619abc2.chunk.js"
   },
   {
     "revision": "716e340aba66e1a6b3ea",

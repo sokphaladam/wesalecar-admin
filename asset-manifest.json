@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.006f6892.chunk.css",
-    "main.js": "/static/js/main.56414374.chunk.js",
-    "main.js.map": "/static/js/main.56414374.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.5cc152c6.js",
-    "runtime-main.js.map": "/static/js/runtime-main.5cc152c6.js.map",
-    "static/js/2.d91a3b19.chunk.js": "/static/js/2.d91a3b19.chunk.js",
-    "static/js/2.d91a3b19.chunk.js.map": "/static/js/2.d91a3b19.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.c7fb393271ac6f6fac952c9218ddad35.js": "/precache-manifest.c7fb393271ac6f6fac952c9218ddad35.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.006f6892.chunk.css.map": "/static/css/main.006f6892.chunk.css.map",
-    "static/js/2.d91a3b19.chunk.js.LICENSE.txt": "/static/js/2.d91a3b19.chunk.js.LICENSE.txt",
-    "static/media/208.gif": "/static/media/208.04115a6c.gif",
-    "static/media/index.css": "/static/media/typiconsd41dd41d.a509074c.eot"
+    "main.css": "/wesalecar-admin/static/css/main.811c717d.chunk.css",
+    "main.js": "/wesalecar-admin/static/js/main.d5428598.chunk.js",
+    "main.js.map": "/wesalecar-admin/static/js/main.d5428598.chunk.js.map",
+    "runtime-main.js": "/wesalecar-admin/static/js/runtime-main.5f4892de.js",
+    "runtime-main.js.map": "/wesalecar-admin/static/js/runtime-main.5f4892de.js.map",
+    "static/js/2.07223a0d.chunk.js": "/wesalecar-admin/static/js/2.07223a0d.chunk.js",
+    "static/js/2.07223a0d.chunk.js.map": "/wesalecar-admin/static/js/2.07223a0d.chunk.js.map",
+    "index.html": "/wesalecar-admin/index.html",
+    "precache-manifest.43135467e56090e31970ecca4ce49fee.js": "/wesalecar-admin/precache-manifest.43135467e56090e31970ecca4ce49fee.js",
+    "service-worker.js": "/wesalecar-admin/service-worker.js",
+    "static/css/main.811c717d.chunk.css.map": "/wesalecar-admin/static/css/main.811c717d.chunk.css.map",
+    "static/js/2.07223a0d.chunk.js.LICENSE.txt": "/wesalecar-admin/static/js/2.07223a0d.chunk.js.LICENSE.txt",
+    "static/media/208.gif": "/wesalecar-admin/static/media/208.04115a6c.gif",
+    "static/media/index.css": "/wesalecar-admin/static/media/typiconsd41dd41d.a509074c.eot"
   },
   "entrypoints": [
-    "static/js/runtime-main.5cc152c6.js",
-    "static/js/2.d91a3b19.chunk.js",
-    "static/css/main.006f6892.chunk.css",
-    "static/js/main.56414374.chunk.js"
+    "static/js/runtime-main.5f4892de.js",
+    "static/js/2.07223a0d.chunk.js",
+    "static/css/main.811c717d.chunk.css",
+    "static/js/main.d5428598.chunk.js"
   ]
 }

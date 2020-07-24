@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/wesalecar-admin/static/css/main.811c717d.chunk.css",
-    "main.js": "/wesalecar-admin/static/js/main.3619abc2.chunk.js",
-    "main.js.map": "/wesalecar-admin/static/js/main.3619abc2.chunk.js.map",
+    "main.js": "/wesalecar-admin/static/js/main.e3515154.chunk.js",
+    "main.js.map": "/wesalecar-admin/static/js/main.e3515154.chunk.js.map",
     "runtime-main.js": "/wesalecar-admin/static/js/runtime-main.5f4892de.js",
     "runtime-main.js.map": "/wesalecar-admin/static/js/runtime-main.5f4892de.js.map",
     "static/js/2.dbd70c8e.chunk.js": "/wesalecar-admin/static/js/2.dbd70c8e.chunk.js",
     "static/js/2.dbd70c8e.chunk.js.map": "/wesalecar-admin/static/js/2.dbd70c8e.chunk.js.map",
     "index.html": "/wesalecar-admin/index.html",
-    "precache-manifest.44148c611b1565b11fe85b990f24d3d7.js": "/wesalecar-admin/precache-manifest.44148c611b1565b11fe85b990f24d3d7.js",
+    "precache-manifest.3a97e04e155eaa38fb882b0272f388a6.js": "/wesalecar-admin/precache-manifest.3a97e04e155eaa38fb882b0272f388a6.js",
     "service-worker.js": "/wesalecar-admin/service-worker.js",
     "static/css/main.811c717d.chunk.css.map": "/wesalecar-admin/static/css/main.811c717d.chunk.css.map",
     "static/js/2.dbd70c8e.chunk.js.LICENSE.txt": "/wesalecar-admin/static/js/2.dbd70c8e.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.5f4892de.js",
     "static/js/2.dbd70c8e.chunk.js",
     "static/css/main.811c717d.chunk.css",
-    "static/js/main.3619abc2.chunk.js"
+    "static/js/main.e3515154.chunk.js"
   ]
 }

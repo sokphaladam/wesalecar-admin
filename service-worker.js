@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/wesalecar-admin/precache-manifest.44148c611b1565b11fe85b990f24d3d7.js"
+  "/wesalecar-admin/precache-manifest.3a97e04e155eaa38fb882b0272f388a6.js"
 );
 
 self.addEventListener('message', (event) => {

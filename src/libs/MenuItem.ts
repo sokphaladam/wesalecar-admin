@@ -23,6 +23,6 @@ export const MenuItem = [
   {
     icon: 'menu-icon mdi mdi-account-key',
     name: 'Users',
-    to: '#',
+    to: '/users',
   }
 ]

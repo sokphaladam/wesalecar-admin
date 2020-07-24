@@ -9,6 +9,7 @@ import { MakeScreen } from '../screens/Makes/MakeScreen';
 import { ModelCreatScreen } from '../screens/Models/ModeCreateScreen';
 import { ModelScreen } from '../screens/Models/ModelScreen';
 import { ModelEditScreen } from '../screens/Models/ModelEditScreen';
+import { UserScreen } from '../screens/Users/UserScreen';
 
 
 const routes: any = [
@@ -57,6 +58,11 @@ const routes: any = [
     path: '/models/edit/:id',
     exact: true
   },
+  {
+    component: UserScreen,
+    path: '/users',
+    exact: true
+  }
 ]
 
 export function RouteIndex(){

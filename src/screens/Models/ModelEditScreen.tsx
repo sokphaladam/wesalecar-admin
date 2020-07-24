@@ -3,6 +3,8 @@ import { Content } from '../../components/Content';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
 
+const path = window.location.pathname.split('/')[1];
+
 export function ModelEditScreen(){
   let model: HTMLInputElement | null = null;
   let makes: HTMLSelectElement | null = null;
@@ -44,7 +46,7 @@ export function ModelEditScreen(){
       makes: makes!.value
     });
 
-    history.push('/models');
+    history.push(path === 'wesalecar-admin'? '/wesalecar-admin/models':'/models');
   }
   
   return(

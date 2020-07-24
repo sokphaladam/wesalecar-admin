@@ -29,8 +29,25 @@ function App(props: any) {
   }, [auth.currentUser]);
 
   const verifyUser = async (user: User | null) => {
+
     if(user) {
       const snap = await firebase.firestore().collection('users').doc(user!.uid).get();
+
+      if(snap.data() === undefined) {
+        auth.signOut();
+        sessionStorage.removeItem('users');
+
+        const local = localStorage.getItem('user')!;
+
+        if(local !== null) {
+          const x = await firebase.login({
+            email: JSON.parse(local).email,
+            password: JSON.parse(local).password
+          })
+          sessionStorage.setItem('users', JSON.stringify(x.user));
+        }
+      }
+
       if(snap.data()!.role === 'admin') {
         sessionStorage.setItem('user', JSON.stringify(user));
         setAuth(true);

@@ -3,6 +3,8 @@ import { Content } from '../../components/Content';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 
+const path = window.location.pathname.split('/')[1];
+
 export function MakeCreateScreen() {
   let make: HTMLInputElement | null = null;
   const firebase = useFirebase();
@@ -14,7 +16,7 @@ export function MakeCreateScreen() {
       name: make!.value,
       created: Date.now()
     });
-    history.push('/makes');
+    history.push(path === 'wesalecar-admin' ? '/wesalecar-admin/makes':'/makes');
   }
 
   return (

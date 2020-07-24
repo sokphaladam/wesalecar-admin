@@ -10,7 +10,8 @@ import { ModelCreatScreen } from '../screens/Models/ModeCreateScreen';
 import { ModelScreen } from '../screens/Models/ModelScreen';
 import { ModelEditScreen } from '../screens/Models/ModelEditScreen';
 import { UserScreen } from '../screens/Users/UserScreen';
-
+import { UserCreateScreen } from '../screens/Users/UserCreateScreen';
+import { UserEditScreen } from '../screens/Users/UserEditScreen';
 
 const routes: any = [
   {
@@ -62,6 +63,16 @@ const routes: any = [
     component: UserScreen,
     path: '/users',
     exact: true
+  },
+  {
+    component: UserCreateScreen,
+    path: '/users/create',
+    exact: true
+  },
+  {
+    component: UserEditScreen,
+    path: '/users/edit/:id',
+    exact: true
   }
 ]
 
@@ -70,7 +81,12 @@ export function RouteIndex(){
     <Switch>
       {
         routes.map((x: any) => {
-          return <Route {...x} key={x.path}/>
+          return <Route {...x} key={x.path + 1}/>
+        })
+      }
+      {
+        routes.map((x: any) => {
+          return <Route {...x} key={x.path + 2} path={"/wesalecar-admin"+x.path}/>
         })
       }
     </Switch>

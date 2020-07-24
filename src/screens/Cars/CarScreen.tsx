@@ -3,6 +3,8 @@ import { Content } from "../../components/Content";
 import { Link } from "react-router-dom";
 import { useFirebase } from "react-redux-firebase";
 
+const path = window.location.pathname.split('/')[1];
+
 export function CarScreen() {
   const firebase = useFirebase();
   const [data, setData] = useState([]);
@@ -44,7 +46,7 @@ export function CarScreen() {
   return (
     <Content>
       <div className="ui small">
-        <Link to="/cars/create" className="ui button black">
+        <Link to={path === 'wesalecar-admin' ? "/wesalecar-admin/cars/create": "/cars/create"} className="ui button black">
           Create New Car
         </Link>
         <br />
@@ -137,7 +139,7 @@ export function CarScreen() {
                     </form>
                   </td>
                   <td className="center aligned">
-                    <Link to={"/cars/edit/" + x.id} className="ui button blue">Edit</Link>
+                    <Link to={path === 'wesalecar-admin'? "/wesalecar-admin/cars/edit/" + x.id:"/cars/edit/" + x.id} className="ui button blue">Edit</Link>
                     <Link
                       to="#"
                       className="ui button red"

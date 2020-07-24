@@ -15,6 +15,7 @@ export function InformationTab(props: Props) {
   let price: HTMLInputElement | null = null;
   let type: HTMLSelectElement | null = null;
   let year: HTMLInputElement | null = null;
+  let speed: HTMLInputElement | null = null;
   let image: HTMLInputElement | null = null;
 
   const [url, setUrl] = useState(props.type === 'create'? [] : props.data!.image!);
@@ -31,6 +32,7 @@ export function InformationTab(props: Props) {
       price: Number(price!.value),
       type: type!.value,
       year: Number(year!.value),
+      speed: Number(speed!.value),
       image: url
     }
 
@@ -57,6 +59,7 @@ export function InformationTab(props: Props) {
       price: Number(price!.value),
       type: type!.value,
       year: Number(year!.value),
+      speed: Number(speed!.value),
       image: url
     }
     props.handleChange(data);
@@ -100,6 +103,10 @@ export function InformationTab(props: Props) {
       <div className="field">
         <label>Year</label>
         <input type="number" placeholder="Year are make" required ref={ref => year = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' : props.data!.year!}/>
+      </div>
+      <div className="field">
+        <label>Speed</label>
+        <input type="number" placeholder="Enter speed of car" required ref={ref => speed = ref} onChange={handleChange} defaultValue={props.type === 'create'? '' : props.data!.speed!}/>
       </div>
       <div className="field">
         <label>Image</label>

@@ -3,6 +3,8 @@ import { Content } from '../../components/Content';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 
+const path = window.location.pathname.split('/')[1];
+
 export function ModelCreatScreen(){
   let model: HTMLInputElement | null = null;
   let makes: HTMLSelectElement | null = null;
@@ -34,7 +36,7 @@ export function ModelCreatScreen(){
       created: Date.now()
     });
 
-    history.push('/models');
+    history.push(path === 'wesalecar-admin'?'/wesalecar-admin/models':'/models');
   }
 
   return(

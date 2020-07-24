@@ -8,6 +8,8 @@ import { OverviewTab } from './Tab/OverviewTab';
 import { FeatureTab } from './Tab/FeatureTab';
 import { VechicleTab } from './Tab/VechicleTab';
 
+const path = window.location.pathname.split('/')[1];
+
 export function CarEditScreen() {
   const firebase = useFirebase();
   const history = useHistory();
@@ -50,7 +52,7 @@ export function CarEditScreen() {
       }
 
       await firebase.firestore().collection('cars').doc(match.params.id).update(data);
-      history.push('/cars');
+      history.push(path === '' ? '/wesalecar-admin/cars':'/cars');
     }
   }
 

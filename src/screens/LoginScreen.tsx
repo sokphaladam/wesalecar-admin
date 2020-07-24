@@ -11,10 +11,12 @@ export function LoginScreen() {
     e.preventDefault();
 
     try {
-      await firebase.login({
+      const data = {
         email: email!.value,
         password: password!.value
-      });
+      }
+      await firebase.login(data);
+      localStorage.setItem('user', JSON.stringify(data))
     } catch (error) {
       alert(error.message)
     }

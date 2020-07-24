@@ -3,6 +3,7 @@ export type BasicInformationType = {
   price?: number | 0;
   type?: string | null;
   year?: number | 0;
+  speed?: number | 0;
   image?: string[] | [];
 }
 

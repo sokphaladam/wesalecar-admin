@@ -8,6 +8,8 @@ import { VechicleTab } from './Tab/VechicleTab';
 import { BasicInformationType, OverviewType, FeatureType, VechicleType } from '../../libs/DataType';
 import { isEmpty, useFirebase } from 'react-redux-firebase';
 
+const path = window.location.pathname.split('/')[1];
+
 export function CarCreateScreen() {
   const firebase = useFirebase();
   const history = useHistory();
@@ -50,7 +52,7 @@ export function CarCreateScreen() {
       }
 
       await firebase.firestore().collection('cars').doc().set(data);
-      history.push('/cars')
+      history.push(path === 'wesalecar-admin' ? '/wesalecar-admin/cars' : '/cars')
     }
   }
 

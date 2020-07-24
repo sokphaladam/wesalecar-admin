@@ -3,6 +3,8 @@ import { Content } from '../../components/Content';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
+const path = window.location.pathname.split('/')[1];
+
 export function MakeEditScreen() {
   let make: HTMLInputElement | null = null;
   const firebase = useFirebase();
@@ -15,7 +17,7 @@ export function MakeEditScreen() {
     await firebase.firestore().collection('makes').doc((match.params as any).id).update({
       name: make!.value
     });
-    history.push('/makes');
+    history.push(path === 'wesalecar-admin' ? '/wesalecar-admin/makes': '/makes');
   }
 
   useEffect(() => {

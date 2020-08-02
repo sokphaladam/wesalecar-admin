@@ -6,22 +6,22 @@ import { Link } from 'react-router-dom';
 
 const path = window.location.pathname.split('/')[1];
 
-export function UserScreen(){
+export function UserScreen() {
   const [data, loadData] = useState([]);
 
   useEffect(() => {
-    if(isEmpty(data)){
+    if (isEmpty(data)) {
       DocumentUsers().then(res => loadData(res));
     }
   })
 
-  return(
+  return (
     <Content>
       <div className="ui small">
-        <Link to={path === 'wesalecar-admin' ? "/wesalecar-admin/users/create": "/users/create"} className="ui button black">
+        <Link to={path === 'wesalecar-admin' ? "/wesalecar-admin/users/create" : "/users/create"} className="ui button black">
           Create New User
         </Link>
-        <br/>
+        <br />
         <table className="ui celled table padded blue">
           <thead>
             <tr>
@@ -42,7 +42,7 @@ export function UserScreen(){
                     <td>{x.role}</td>
                     <td>{x.providerId}</td>
                     <td>
-                      <Link to={path === 'wesalecar-admin' ? '/wesalecar-admin/users/edit/'+x.id: '/users/edit/'+x.id} className="ui button blue">
+                      <Link to={path === 'wesalecar-admin' ? '/wesalecar-admin/users/edit/' + x.id : '/users/edit/' + x.id} className="ui button blue">
                         Edit
                       </Link>
                     </td>
@@ -68,7 +68,7 @@ export function UserScreen(){
   )
 }
 
-async function DocumentUsers(){
+async function DocumentUsers() {
   const items: any = [];
   const doc = await firebase.firestore().collection('users').get();
 

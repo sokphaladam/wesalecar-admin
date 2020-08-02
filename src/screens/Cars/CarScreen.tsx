@@ -13,7 +13,7 @@ export function CarScreen() {
 
   useEffect(() => {
     getCarList();
-    if(load){
+    if (load) {
       getModelList();
       setLoad(false);
     }
@@ -46,7 +46,7 @@ export function CarScreen() {
   return (
     <Content>
       <div className="ui small">
-        <Link to={path === 'wesalecar-admin' ? "/wesalecar-admin/cars/create": "/cars/create"} className="ui button black">
+        <Link to={path === 'wesalecar-admin' ? "/wesalecar-admin/cars/create" : "/cars/create"} className="ui button black">
           Create New Car
         </Link>
         <br />
@@ -139,7 +139,7 @@ export function CarScreen() {
                     </form>
                   </td>
                   <td className="center aligned">
-                    <Link to={path === 'wesalecar-admin'? "/wesalecar-admin/cars/edit/" + x.id:"/cars/edit/" + x.id} className="ui button blue">Edit</Link>
+                    <Link to={path === 'wesalecar-admin' ? "/wesalecar-admin/cars/edit/" + x.id : "/cars/edit/" + x.id} className="ui button blue">Edit</Link>
                     <Link
                       to="#"
                       className="ui button red"

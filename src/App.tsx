@@ -20,26 +20,26 @@ function App(props: any) {
   const [isAuth, setAuth] = useState(false);
   const [load, setLoad] = useState(true);
 
-  useEffect(()=>{
+  useEffect(() => {
     verifyUser(auth.currentUser);
 
-    setTimeout(()=>{
+    setTimeout(() => {
       setLoad(false);
     }, 3000);
   }, [auth.currentUser]);
 
   const verifyUser = async (user: User | null) => {
 
-    if(user) {
+    if (user) {
       const snap = await firebase.firestore().collection('users').doc(user!.uid).get();
 
-      if(snap.data() === undefined) {
+      if (snap.data() === undefined) {
         auth.signOut();
         sessionStorage.removeItem('users');
 
         const local = localStorage.getItem('user')!;
 
-        if(local !== null) {
+        if (local !== null) {
           const x = await firebase.login({
             email: JSON.parse(local).email,
             password: JSON.parse(local).password
@@ -48,11 +48,11 @@ function App(props: any) {
         }
       }
 
-      if(snap.data()!.role === 'admin') {
+      if (snap.data()!.role === 'admin') {
         sessionStorage.setItem('user', JSON.stringify(user));
         setAuth(true);
       }
-      else{
+      else {
         alert('permission denied')
         firebase.logout();
         setAuth(false);
@@ -60,15 +60,15 @@ function App(props: any) {
     }
   }
 
-  if(load) return <LoadScreen/>
+  if (load) return <LoadScreen />
 
-  if(!isAuth) return <LoginScreen/>
+  if (!isAuth) return <LoginScreen />
 
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter>
       <div className="page-container">
-        <SideMenu/>
-        <RouteIndex/>
+        <SideMenu />
+        <RouteIndex />
       </div>
     </BrowserRouter>
   );

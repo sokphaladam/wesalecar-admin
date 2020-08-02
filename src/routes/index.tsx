@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { CarScreen } from '../screens/Cars/CarScreen';
 import { CarCreateScreen } from '../screens/Cars/CarCreateScreen';
-import {CarEditScreen} from '../screens/Cars/CarEditScreen';
+import { CarEditScreen } from '../screens/Cars/CarEditScreen';
 import { MakeCreateScreen } from '../screens/Makes/MakeCreateScreen';
 import { MakeEditScreen } from '../screens/Makes/MakeEditScreen';
 import { MakeScreen } from '../screens/Makes/MakeScreen';
@@ -12,6 +12,7 @@ import { ModelEditScreen } from '../screens/Models/ModelEditScreen';
 import { UserScreen } from '../screens/Users/UserScreen';
 import { UserCreateScreen } from '../screens/Users/UserCreateScreen';
 import { UserEditScreen } from '../screens/Users/UserEditScreen';
+import { BookScreen } from '../screens/Books/BookScreen';
 
 const routes: any = [
   {
@@ -73,20 +74,25 @@ const routes: any = [
     component: UserEditScreen,
     path: '/users/edit/:id',
     exact: true
+  },
+  {
+    component: BookScreen,
+    path: '/books',
+    exact: true
   }
 ]
 
-export function RouteIndex(){
-  return(
+export function RouteIndex() {
+  return (
     <Switch>
       {
         routes.map((x: any) => {
-          return <Route {...x} key={x.path + 1}/>
+          return <Route {...x} key={x.path + 1} />
         })
       }
       {
         routes.map((x: any) => {
-          return <Route {...x} key={x.path + 2} path={"/wesalecar-admin"+x.path}/>
+          return <Route {...x} key={x.path + 2} path={"/wesalecar-admin" + x.path} />
         })
       }
     </Switch>

@@ -15,6 +15,11 @@ import { isEmpty, useFirebase } from "react-redux-firebase";
 import { TabComponent } from "../../components/TabComponent";
 import { TabContentComponent } from "../../components/TabContentComponent";
 import { VehicleInformation } from "./components/VehicleInformation";
+import { Mirror } from "./components/Mirror";
+import { Light } from "./components/Light";
+import { VehicleInformationType, MirrorType } from "./libs/FieldType";
+import { CarEditScreen } from "./CarEditScreen";
+import { DataCarEdtorType, CarEditor } from "./components/CarEditor";
 
 const path = window.location.pathname.split("/")[1];
 
@@ -85,100 +90,39 @@ export function CarCreateScreen() {
     }
   };
 
+  const [data, setData] = useState<DataCarEdtorType>({
+    sub: {
+      mirror: {
+        sunroof: "",
+        windshield: ""
+      },
+      light: {
+        back_end_exterior_light: "",
+        front_end_exterior_light: "",
+        hazard_light: "",
+        side_exterior_left: "",
+        side_exterior_right: ""
+      },
+      heat: {
+        air_conditioning_system: "",
+        heating_system: ""
+      },
+      carpat: {
+        door_trim_and_door_planel: "",
+        headliner: ""
+      },
+      luggage: {
+        vehicle_jack_tool_kit_wheel_spanner: ""
+      },
+    }
+  });
+
+  console.log(data)
+
   return (
-    <Content>
-      <div className="row">
-        <div className="col-md-12">
-          <TabComponent selectDefault={0}>
-            <TabContentComponent
-              index={0}
-              name="Vehicle Information"
-              hash="infor"
-            >
-              <VehicleInformation/>
-            </TabContentComponent>
-            <TabContentComponent index={1} name="Mirrors" hash="mirror">
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent index={1} name="Lights" hash="light">
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent index={1} name="Heat/AC" hash="ac">
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent
-              index={1}
-              name="Carpet, Trim And Mats"
-              hash="mats"
-            >
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent
-              index={1}
-              name="Luggage Compartment"
-              hash="luggage"
-            >
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent
-              index={1}
-              name="Test Drive Sensors"
-              hash="test"
-            >
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent index={1} name="Eletrical System" hash="ele">
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent index={1} name="Tires And Wheel" hash="tires">
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent index={0} name="Car Body" hash="body">
-              <div>Hello World 0</div>
-            </TabContentComponent>
-            <TabContentComponent index={1} name="Check of Doors" hash="doors">
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent
-              index={1}
-              name="Audio Entertainment"
-              hash="audio"
-            >
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent
-              index={1}
-              name="Interior Amenities"
-              hash="interior"
-            >
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent index={1} name="Seats" hash="seats">
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent
-              index={1}
-              name="Test Drive General"
-              hash="general"
-            >
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent index={1} name="Engine" hash="engine">
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent
-              index={1}
-              name="Transmission"
-              hash="transmission"
-            >
-              <div>Hello World 1</div>
-            </TabContentComponent>
-            <TabContentComponent index={1} name="Brakes" hash="brakes">
-              <div>Hello World 1</div>
-            </TabContentComponent>
-          </TabComponent>
-        </div>
-      </div>
-    </Content>
+    <CarEditor
+      data={data}
+      onChange={data => setData(data)}
+    />
   );
 }

@@ -17,8 +17,8 @@ export function TabComponent(props: Props) {
   });
 
   return (
-    <div className="ui grid">
-      <div className="two wide column">
+    <div className="row">
+      <div className="col-md-2">
         <div id="tab" className="ui vertical pointing menu large">
           {props.children.map((child: any) => {
             return (
@@ -34,7 +34,7 @@ export function TabComponent(props: Props) {
           })}
         </div>
       </div>
-      <div className="twelve wide stretched column">{props.children}</div>
+      <div className="col-md-10">{props.children}</div>
     </div>
   );
 }

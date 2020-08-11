@@ -1,3 +1,24 @@
+export interface FieldCarType {
+  information?: VehicleInformationType;
+  mirror?: MirrorType;
+  light?: LightType;
+  heat?: HeatACType;
+  carp?: CarpetType;
+  luggage?: LuggageType;
+  testDrive?: TestDriverSensorsCamerasType;
+  ele?: EletricalSystemType;
+  tires?: TireAndWheelsType;
+  body?: CarBodyType;
+  door?: CheckOfDoorsType;
+  audio?: AudioEntertainmentType;
+  interior?: InteriorAmenitiesType;
+  seat?: SeatsType;
+  testDriveGeneral?: TestDriveGeneral;
+  engine?: EngineType;
+  transmission?: TransmissionTransaxleDifferentialAndTransferCaseType;
+  brakes?: BrakesType;
+}
+
 export type VehicleInformationType = {
   make?: string;
   model?: string;
@@ -141,7 +162,7 @@ export type CarBodyType = {
   boot_multiple_scartches?: string | null;
   boot_multiple_dents?: string | null;
   sings?: boolean | true;
-  rust: string | null;
+  rust?: string | null;
   underneath?: string | null;
   bonnet_replaced?: boolean | true;
   bonnet?: string | null;

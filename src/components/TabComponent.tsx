@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 interface Props {
   selectDefault: number;
   children: React.ReactNode[];
+  onSubmit: () => void;
 }
 
 export function TabComponent(props: Props) {
@@ -33,6 +34,7 @@ export function TabComponent(props: Props) {
             );
           })}
         </div>
+        <button className="ui button blue" onClick={()=>props.onSubmit()}>Save</button>
       </div>
       <div className="col-md-10">{props.children}</div>
     </div>

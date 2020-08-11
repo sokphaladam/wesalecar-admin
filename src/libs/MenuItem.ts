@@ -12,16 +12,16 @@ export const MenuItem = [
     //   }
     // ]
   },
-  {
-    icon: 'menu-icon mdi mdi-domain',
-    name: 'Makes',
-    to: path === 'wesalecar-admin' ? '/wesalecar-admin/makes' : '/makes',
-  },
-  {
-    icon: 'menu-icon mdi mdi-cube',
-    name: 'Models',
-    to: path === 'wesalecar-admin' ? '/wesalecar-admin/models' : '/models',
-  },
+  // {
+  //   icon: 'menu-icon mdi mdi-domain',
+  //   name: 'Makes',
+  //   to: path === 'wesalecar-admin' ? '/wesalecar-admin/makes' : '/makes',
+  // },
+  // {
+  //   icon: 'menu-icon mdi mdi-cube',
+  //   name: 'Models',
+  //   to: path === 'wesalecar-admin' ? '/wesalecar-admin/models' : '/models',
+  // },
   {
     icon: 'menu-icon mdi mdi-account-key',
     name: 'Users',

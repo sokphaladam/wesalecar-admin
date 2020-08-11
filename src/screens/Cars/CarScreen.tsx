@@ -56,7 +56,6 @@ export function CarScreen() {
               <th className="center aligned">Publish</th>
               <th>Title</th>
               <th>Price</th>
-              <th>Type</th>
               <th>Year</th>
               <th>Image</th>
               <th className="center aligned">Model | Makes</th>
@@ -66,6 +65,7 @@ export function CarScreen() {
           <tbody>
             {data.map((x: any) => {
               let refInput: HTMLInputElement | null;
+              const images = x.image === undefined ? x.images : x.image
               return (
                 <tr key={x.id}>
                   <td className="center aligned">
@@ -89,11 +89,10 @@ export function CarScreen() {
                   <td className="ui green text">
                     {new Intl.NumberFormat().format(Number(x.price))} USD
                   </td>
-                  <td>{x.type}</td>
                   <td>{x.year}</td>
                   <td>
                     <h4 className="ui image header" style={{ display: "flex" }}>
-                      {x.image.map((y: any, j: number) => {
+                      {images.map((y: any, j: number) => {
                         return (
                           <img
                             src={y}

@@ -110,32 +110,7 @@ export function CarScreen() {
                     </h4>
                   </td>
                   <td className="center aligned">
-                    <form className="ui form small">
-                      <select
-                        className="field"
-                        onChange={(e) => {
-                          const { model, makes } = JSON.parse(e.target.value);
-                          firebase
-                            .firestore()
-                            .collection("cars")
-                            .doc(x.id)
-                            .update({ model, makes });
-                        }}
-                      >
-                        <option>No Model</option>
-                        {models.map((m: any) => {
-                          return (
-                            <option
-                              value={JSON.stringify(m)}
-                              selected={m.model === x.model}
-                              key={m.model}
-                            >
-                              {m.model} | {m.makes}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </form>
+                    {x.model} | {x.make}
                   </td>
                   <td className="center aligned">
                     <Link to={path === 'wesalecar-admin' ? "/wesalecar-admin/cars/edit/" + x.id : "/cars/edit/" + x.id} className="ui button blue">Edit</Link>

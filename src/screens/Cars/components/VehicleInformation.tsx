@@ -11,8 +11,15 @@ interface Props {
 }
 
 export function VehicleInformation(props: Props) {
-  const [data, setData] = useState(props.data);
-  const [images, setImage] = useState(props.data.images);
+  const [uploading, setUploading] = useState(false);
+
+  const onUploading = () => {
+    setUploading(true);
+  }
+
+  const onUploaded = () => {
+    setUploading(false);
+  }
 
   return (
     <div className="ui form large">
@@ -21,38 +28,41 @@ export function VehicleInformation(props: Props) {
       <div className="two fields">
         <TextInput
           label="Title"
-          value={data.title || ""}
-          onChange={async (e) =>{
-            await setData({...data, title: e.target.value });
-            await props.onChange(data)
+          value={props.data.title || ""}
+          onChange={(e) =>{
+            props.onChange({ ...props.data, title: e.target.value })
           }}
         />
         <TextInput
           label="Price"
           type="number"
-          value={data.price || 0}
+          value={props.data.price || 0}
           step={0.0}
-          onChange={async(e) =>{
-            await setData({...data, price: Number(e.target.value) });
-            await props.onChange(data);
+          onChange={(e) =>{
+            props.onChange({...props.data, price: Number(e.target.value)});
           }}
         />
       </div>
       <UploadComponent
-        images={images || []}
-        onChange={ async (img: any) => {
-          await setImage(img);
-          await props.onChange({ ...data, images })
+        images={props.data.images || []}
+        onChange={(img: any) => {
+          props.onChange({ ...props.data, images: img });
         }}
+        onUploading={onUploading}
+        onUploaded={onUploaded}
       />
-      <TableComponent
-        data={data}
-        dataDummy={VehicleData}
-        onChange={async (v) =>{
-          await setData({...v});
-          await props.onChange(data);
-        }}
-      />
+      {
+        !uploading &&
+        <TableComponent
+          data={props.data.sub?.information}
+          dataDummy={VehicleData}
+          onChange={(v) => {
+            props.onChange({ ...props.data, ...v, sub: { ...props.data.sub, information: v } });
+          }}
+        />
+      }
     </div>
   );
 }
+
+// { ...props.data, sub: {...props.data.sub, mirror: data } }

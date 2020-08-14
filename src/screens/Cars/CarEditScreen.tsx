@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { DataCarEdtorType, CarEditor } from './components/CarEditor';
+import { FirebaseHook } from '../../hook/FirebaseHook';
+import { Loading } from '../../components/Loading';
 
 const path = window.location.pathname.split('/')[1];
 
@@ -11,6 +13,7 @@ export function CarEditScreen() {
   const match: any = useRouteMatch();
   const [load, setLoad] = useState(true);
   const [data, setData] = useState<DataCarEdtorType>({});
+  const [submited, setSubmited] = useState(false);
 
   useEffect(() => {
     if (load) {
@@ -33,9 +36,16 @@ export function CarEditScreen() {
     const con = window.confirm('Are you sure want to save?');
 
     if (con) {
-      await insertYear(data.year);
-      await insertMake(data.make?.toLowerCase());
-      await insertModel(data.model?.toLowerCase(), data.make?.toLowerCase());
+      setSubmited(true);
+      const firebaseHook = new FirebaseHook(firebase);
+      await firebaseHook.insertYear(data.year);
+      await firebaseHook.insertMake(data.make?.toLowerCase());
+      await firebaseHook.insertModel(data.model?.toLowerCase(), data.make?.toLowerCase());
+      await firebaseHook.insertMaximumMileage(data.odometer_reading?.toLowerCase());
+      await firebaseHook.insertBodyType(data.body?.toLowerCase());
+      await firebaseHook.insertSpecs(data.specs?.toLowerCase());
+      await firebaseHook.insertService(data.service_history!.toLowerCase());
+      await firebaseHook.insertColor(data.car_color?.toLowerCase());
 
       await firebase.firestore().collection('cars').doc(match.params.id).update(data);
       history.push(
@@ -44,54 +54,9 @@ export function CarEditScreen() {
     }
   }
 
-  const insertYear = async (val: any) => {
-    const year = await firebase
-      .firestore()
-      .collection("years")
-      .where("year", "==", val)
-      .get();
+  if(load) return <Loading label="Load Data..."/>
 
-    if (year.empty) {
-      await firebase.firestore().collection("years").doc().set({
-        year: val,
-        created: Date.now(),
-      });
-    }
-  }
-
-  const insertMake = async (val: any) => {
-    const make = await firebase
-      .firestore()
-      .collection("makes")
-      .where("name", "==", val)
-      .get();
-
-    if (make.empty) {
-      await firebase.firestore().collection("makes").doc().set({
-        name: val,
-        created: Date.now(),
-      });
-    }
-  }
-
-  const insertModel = async (val: any, make: any) => {
-    const model = await firebase
-      .firestore()
-      .collection("models")
-      .where("model", "==", val)
-      .where("makes", "==", make)
-      .get();
-
-    if (model.empty) {
-      await firebase.firestore().collection("models").doc().set({
-        model: val,
-        makes: make,
-        created: Date.now(),
-      });
-    }
-  }
-
-  if(load) return <div>Load Data...</div>
+  if(submited) return <Loading label="Save Data..."/>
 
   return (
     <CarEditor
